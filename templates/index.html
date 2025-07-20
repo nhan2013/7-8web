@@ -1,8 +1,84 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>7/8</title>
+  <meta charset="UTF-8">
+  <title>Ghi Chú Yêu Thương</title>
+  <style>
+    body {
+      margin: 0;
+      background: pink;
+      overflow: hidden;
+      font-family: sans-serif;
+    }
+
+    h1 {
+      text-align: center;
+      padding-top: 50px;
+      font-size: 3em;
+      color: white;
+      text-shadow: 2px 2px #ff69b4;
+    }
+
+    .heart {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      background: red;
+      transform: rotate(45deg);
+      animation: fly 5s linear infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes fly {
+      0% {
+        bottom: 0;
+        opacity: 1;
+      }
+      100% {
+        bottom: 100vh;
+        opacity: 0;
+        transform: translateX(100px) rotate(720deg);
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>ditmemay</h1>
+  <h1>Chào bạn ❤️</h1>
+
+  <!-- Trái tim bay -->
+  <script>
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.style.left = Math.random() * 100 + "vw";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }, 300);
+  </script>
+
+  <!-- Nhạc nền -->
+  <audio autoplay loop hidden>
+    <source src="{{ url_for('static', filename='music.mp3') }}" type="audio/mpeg">
+    Trình duyệt không hỗ trợ nhạc.
+  </audio>
 </body>
 </html>
